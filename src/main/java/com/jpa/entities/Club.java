@@ -3,6 +3,8 @@ package com.jpa.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,4 +22,6 @@ public class Club {
     @JoinColumn(name = "id_coach")
     private Coach coach;
 
+    @OneToMany(targetEntity = Player.class, fetch = FetchType.LAZY, mappedBy = "club")
+    private List<Player> players;
 }
