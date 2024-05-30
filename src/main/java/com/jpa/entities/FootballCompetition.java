@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,6 +19,8 @@ public class FootballCompetition {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "name", columnDefinition = "VARCHAR(100)")
     private String name;
 
     @Column(name = "quantity_price", length = 10, nullable = false, unique = true, insertable = false, updatable = false)
@@ -28,4 +31,7 @@ public class FootballCompetition {
 
     @Column(name = "end_date", columnDefinition = "DATE")
     private LocalDate endDate;
+
+    @ManyToMany(targetEntity = Club.class, mappedBy = "footballCompetitions")
+    private List<Club> clubs;
 }

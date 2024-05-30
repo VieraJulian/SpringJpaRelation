@@ -29,4 +29,12 @@ public class Club {
     @JoinColumn(name = "id_football_association")
     private FootballAssociation footballAssociation;
 
+    @ManyToMany(targetEntity = FootballCompetition.class)
+    @JoinTable(
+            name = "clubs_competition",
+            joinColumns = @JoinColumn(name = "id_club"),
+            inverseJoinColumns = @JoinColumn(name = "id_competition")
+    )
+    private List<FootballCompetition> footballCompetitions;
+
 }
